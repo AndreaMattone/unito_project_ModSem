@@ -1,0 +1,1211 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#"
+     xml:base="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:bag="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:vann="http://purl.org/vocab/vann#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:sequence="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#"
+     xmlns:mattone_music="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:untitled-ontology-13="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music">
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl"/>
+        <dc:creator>Andrea Mattone</dc:creator>
+        <dc:date>2022-01-08</dc:date>
+        <dc:description xml:lang="it">L&apos;ontologia music rappresenta la base di conoscenza di un insieme di brani musicali organizzati in Album e Playlist con diversi Artisti, in cui ogni brano è collegato ad uno specifico Mood musicale</dc:description>
+        <dc:title>Music - Il mood nella musica</dc:title>
+        <vann:preferredNamespacePrefix>http://www.musicmoodmattone.com/musicmood</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>musicmood</vann:preferredNamespaceUri>
+        <rdfs:label>music</rdfs:label>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann#preferredNamespacePrefix -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann#preferredNamespacePrefix"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann#preferredNamespaceUri -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann#preferredNamespaceUri"/>
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/name"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:comment xml:lang="it">Indica che un artista è autore di un determinato brano</rdfs:comment>
+        <rdfs:label xml:lang="it">artistaAutoreDiBrano</rdfs:label>
+        <rdfs:label xml:lang="en">authorOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn"/>
+        </owl:propertyChainAxiom>
+        <rdfs:comment xml:lang="it">indica che un artista compare in un determinato album</rdfs:comment>
+        <rdfs:label xml:lang="en">appearInAlbum</rdfs:label>
+        <rdfs:label xml:lang="it">artistaCompareInAlbum</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti"/>
+        <rdfs:comment xml:lang="it">indica che un brano compare tra una playlist di preferiti</rdfs:comment>
+        <rdfs:label xml:lang="en">appearInFavourites</rdfs:label>
+        <rdfs:label xml:lang="it">branoCompareTraPreferiti</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist"/>
+        <rdfs:comment xml:lang="it">indica che un brano compare in una determinata playlist</rdfs:comment>
+        <rdfs:label xml:lang="en">appearInPlaylist</rdfs:label>
+        <rdfs:label xml:lang="it">branoCompareInPlaylist</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:comment xml:lang="it">indica che un mix è composto da un certo brano</rdfs:comment>
+        <rdfs:label xml:lang="en">composedBy</rdfs:label>
+        <rdfs:label xml:lang="it">mixCompostoDaBrano</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album"/>
+        <rdfs:comment xml:lang="it">indica che un brano è incluso in un album</rdfs:comment>
+        <rdfs:label xml:lang="it">branoContenutoInAlbum</rdfs:label>
+        <rdfs:label xml:lang="en">contentIn</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://purl.org/ontology/mo/Genre"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi"/>
+        </owl:propertyChainAxiom>
+        <rdfs:comment xml:lang="it">indica che un brano ha un certo genere</rdfs:comment>
+        <rdfs:label xml:lang="it">branoHaGenere</rdfs:label>
+        <rdfs:label xml:lang="en">hasGenre</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere"/>
+        <rdfs:comment xml:lang="it">indica che un brano ha un determinato sottogenere</rdfs:comment>
+        <rdfs:label xml:lang="it">branoHaSottogenere</rdfs:label>
+        <rdfs:label xml:lang="en">hasSubgenre</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <rdfs:comment xml:lang="it">indica che un gruppo ha un determinato artista come membro</rdfs:comment>
+        <rdfs:label xml:lang="it">gruppoHaComponenteArtista</rdfs:label>
+        <rdfs:label xml:lang="en">hasComponent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">indica che un brano ha un determinato mood</rdfs:comment>
+        <rdfs:label xml:lang="it">branoHaUmore</rdfs:label>
+        <rdfs:label xml:lang="en">hasMood</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale"/>
+        <rdfs:comment xml:lang="it">indica che un artista è componente di un determinato gruppo</rdfs:comment>
+        <rdfs:label xml:lang="it">artistaComponenteDiGruppo</rdfs:label>
+        <rdfs:label xml:lang="en">componentOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:comment xml:lang="it">indica che un Mood è il mood di un certo Brano</rdfs:comment>
+        <rdfs:label xml:lang="it">moodDi</rdfs:label>
+        <rdfs:label xml:lang="en">moodOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:comment xml:lang="it">indica che una playlist contiene un determinato brano</rdfs:comment>
+        <rdfs:label xml:lang="en">playlistContains</rdfs:label>
+        <rdfs:label xml:lang="it">playlistContieneBrano</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere"/>
+        <rdfs:range rdf:resource="http://purl.org/ontology/mo/Genre"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi"/>
+        <rdfs:comment xml:lang="it">indica che un sotto genere è sottogenere di un determinato genere</rdfs:comment>
+        <rdfs:label xml:lang="en">isSubgenre</rdfs:label>
+        <rdfs:label xml:lang="it">sottogenereDiGenere</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi">
+        <rdfs:domain rdf:resource="http://purl.org/ontology/mo/Genre"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere"/>
+        <rdfs:comment xml:lang="it">Indica che un genere è sovraclasse di un sottogenere</rdfs:comment>
+        <rdfs:label xml:lang="it">genereSovragenereDiSottogenere</rdfs:label>
+        <rdfs:label xml:lang="en">isSupergenreOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+        <rdfs:comment xml:lang="it">indica che un brano ha una determinata durata di un tot di secondi</rdfs:comment>
+        <rdfs:label xml:lang="it">haDurata</rdfs:label>
+        <rdfs:label xml:lang="en">hasDuration</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="it">indica la data di pubblicazione</rdfs:comment>
+        <rdfs:label xml:lang="it">dataDiPubblicazione</rdfs:label>
+        <rdfs:label xml:lang="en">pubblicationDate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/surname -->
+
+    <owl:DatatypeProperty rdf:about="http://xmlns.com/foaf/0.1/surname">
+        <rdfs:comment xml:lang="it">Indica il nome di un individuo</rdfs:comment>
+        <rdfs:label xml:lang="it">(foaf) Nome</rdfs:label>
+        <rdfs:label xml:lang="en">(foaf) name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ontology/mo/Genre -->
+
+    <owl:Class rdf:about="http://purl.org/ontology/mo/Genre">
+        <rdfs:comment xml:lang="it">Un genere musicale è una categoria convenzionale che identifica e classifica i brani e le composizioni in base a criteri di affinità</rdfs:comment>
+        <rdfs:label xml:lang="it">Genere</rdfs:label>
+        <rdfs:label xml:lang="en">Genre</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List"/>
+        <rdfs:comment xml:lang="it">L&apos;album è una collezione di Brani pubblicata dallo stesso autore in una raccolta</rdfs:comment>
+        <rdfs:label xml:lang="en">Album</rdfs:label>
+        <rdfs:label xml:lang="it">Album</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://purl.org/ontology/mo/Genre"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="it">E&apos; un brano musicale</rdfs:comment>
+        <rdfs:label xml:lang="it">Brano</rdfs:label>
+        <rdfs:label xml:lang="en">Song</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoCorto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoCorto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoLungo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoLungo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem"/>
+        <rdfs:comment xml:lang="it">Contiene un brano musicale</rdfs:comment>
+        <rdfs:label xml:lang="it">Canzone</rdfs:label>
+        <rdfs:label xml:lang="en">Track</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/spec/#term_Group"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="it">Un gruppo musicale è un insieme di Artisti in ambito musicale</rdfs:comment>
+        <rdfs:label xml:lang="en">Band</rdfs:label>
+        <rdfs:label xml:lang="it">GruppoMusicale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="it">Un Mix è un insieme di Brani musicali senza particolari correlazioni</rdfs:comment>
+        <rdfs:label xml:lang="en">Mix</rdfs:label>
+        <rdfs:label xml:lang="it">Mix</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peaceful"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sad"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="it">Il mood è lo stato d&apos;animo che viene richiamato da un Brano</rdfs:comment>
+        <rdfs:label xml:lang="en">Mood</rdfs:label>
+        <rdfs:label xml:lang="it">Umore</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix"/>
+        <rdfs:comment xml:lang="it">Una Playlist è un insieme di Brani musicali con una certa correlazione</rdfs:comment>
+        <rdfs:label xml:lang="en">Playlist</rdfs:label>
+        <rdfs:label xml:lang="it">Playlist</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist"/>
+        <rdfs:comment xml:lang="it">I preferiti sono una playlist contenente solo i brani preferiti</rdfs:comment>
+        <rdfs:label xml:lang="en">Favourites</rdfs:label>
+        <rdfs:label xml:lang="it">Preferiti</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">
+        <rdfs:subClassOf rdf:resource="http://purl.org/ontology/mo/Genre"/>
+        <rdfs:comment xml:lang="it">Un genere musicale puo suddividersi in sottogeneri</rdfs:comment>
+        <rdfs:label xml:lang="it">Sottogenere</rdfs:label>
+        <rdfs:label xml:lang="en">Subgenre</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/spec/#term_Group -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/spec/#term_Group">
+        <rdfs:label xml:lang="en">(foaf) Group</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/spec/#term_member -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/spec/#term_member">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+                                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:comment xml:lang="it">Chi opera nel campo dell&apos;arte come creatore o come interprete: gli a. del &apos;300; a. lirico; a. di varietà, della televisione; chi ha raggiunto un notevole livello di eccellenza nel campo artistico prescelto</rdfs:comment>
+        <rdfs:label xml:lang="en">Artist</rdfs:label>
+        <rdfs:label xml:lang="it">Artista</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone"/>
+        <sequence:precedes rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2"/>
+        <mattone_music:contieneBrano rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke&apos;s_End"/>
+        <rdfs:comment xml:lang="it">Contiene il brano 1 dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="it">CanzoneGenesis1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone"/>
+        <mattone_music:contieneBrano rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again"/>
+        <rdfs:comment xml:lang="it">Contiene il brano 2 dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="it">CanzoneGenesis2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos1">
+        <sequence:precedes rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2"/>
+        <mattone_music:contieneBrano rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go"/>
+        <rdfs:comment xml:lang="it">Contiene il brano 1 dei migos</rdfs:comment>
+        <rdfs:label xml:lang="it">CanzoneMigos1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone"/>
+        <mattone_music:contieneBrano rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars"/>
+        <rdfs:comment xml:lang="it">Contiene il brano 2 dei migos</rdfs:comment>
+        <rdfs:label xml:lang="it">CanzoneMigos2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album"/>
+        <bag:hasItem rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos1"/>
+        <bag:hasItem rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2"/>
+        <rdfs:comment xml:lang="it">Album dei migos</rdfs:comment>
+        <rdfs:label xml:lang="en">Culture_II</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">Mood energetico</rdfs:comment>
+        <rdfs:label xml:lang="it">Mood_Energetico</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis">
+        <mattone_music:autoreDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again"/>
+        <mattone_music:autoreDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke&apos;s_End"/>
+        <foaf:surname>Genesis</foaf:surname>
+        <rdfs:comment xml:lang="it">Gruppo Musicale denominato &quot;Genesis&quot;</rdfs:comment>
+        <rdfs:label xml:lang="en">Genesis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">Mood felice</rdfs:comment>
+        <rdfs:label xml:lang="it">Mood_Felice</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <mattone_music:compareInFavourites rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos"/>
+        <mattone_music:contenutoIn rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II"/>
+        <mattone_music:haSottogenere rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap"/>
+        <mattone_music:hasMood rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy"/>
+        <mattone_music:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">256</mattone_music:hasDuration>
+        <mattone_music:publicationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-26T00:00:00</mattone_music:publicationDate>
+        <rdfs:comment xml:lang="it">Brano dei Migos</rdfs:comment>
+        <rdfs:label xml:lang="en">Higher_We_Go</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#HipHop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#HipHop">
+        <rdfs:comment xml:lang="it">Genere musicale</rdfs:comment>
+        <rdfs:label xml:lang="en">HipHop</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">Mood intenso</rdfs:comment>
+        <rdfs:label xml:lang="it">Mood_Intenso</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Migos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Migos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale"/>
+        <mattone_music:autoreDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go"/>
+        <mattone_music:autoreDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Narcos"/>
+        <mattone_music:autoreDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars"/>
+        <foaf:surname>Migos</foaf:surname>
+        <rdfs:comment xml:lang="it">Gruppo musicale denominato  &quot;Migos&quot;</rdfs:comment>
+        <rdfs:label xml:lang="en">Migos</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Narcos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Narcos">
+        <mattone_music:contenutoIn rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II"/>
+        <mattone_music:haSottogenere rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap"/>
+        <mattone_music:hasMood rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense"/>
+        <rdfs:comment xml:lang="it">Brano dei Migos</rdfs:comment>
+        <rdfs:label xml:lang="en">Narcos</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peaceful -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peaceful">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">Mood rilassato</rdfs:comment>
+        <rdfs:label xml:lang="it">Mood_Rilassato</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peter_Gabriel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peter_Gabriel">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <mattone_music:isComponentOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis"/>
+        <rdfs:comment xml:lang="it">Artista componente dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">Peter_Gabriel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Phil_Collins -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Phil_Collins">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/spec/#term_member"/>
+        <mattone_music:isComponentOf rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis"/>
+        <rdfs:comment xml:lang="it">Artista componente dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">Phil_Collins</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock">
+        <rdf:type rdf:resource="http://purl.org/ontology/mo/Genre"/>
+        <rdfs:comment xml:lang="it">Genere musicale</rdfs:comment>
+        <rdfs:label xml:lang="en">Rock</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo">
+        <mattone_music:sottoGenereDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock"/>
+        <rdfs:comment xml:lang="it">sottogenere musicale</rdfs:comment>
+        <rdfs:label xml:lang="it">Rock_Progressivo</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood"/>
+        <rdfs:comment xml:lang="it">Mood triste</rdfs:comment>
+        <rdfs:label xml:lang="it">Mood_Triste</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <mattone_music:compareInFavourites rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos"/>
+        <mattone_music:contenutoIn rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II"/>
+        <mattone_music:haSottogenere rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap"/>
+        <mattone_music:hasMood rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense"/>
+        <mattone_music:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">293</mattone_music:hasDuration>
+        <mattone_music:publicationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-26T00:00:00</mattone_music:publicationDate>
+        <rdfs:comment xml:lang="it">Brano musicale dei Migos</rdfs:comment>
+        <rdfs:label xml:lang="en">Supastars</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino">
+        <bag:hasItem rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone1"/>
+        <bag:hasItem rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2"/>
+        <rdfs:comment xml:lang="it">Album dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">The_Last_Domino</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis">
+        <rdfs:comment xml:lang="it">Playlist dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">This_is_Genesis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti"/>
+        <rdfs:comment xml:lang="it">Playlist di preferiti dei migos</rdfs:comment>
+        <rdfs:label xml:lang="en">This_is_Migos</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere"/>
+        <mattone_music:sottoGenereDi rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#HipHop"/>
+        <rdfs:comment xml:lang="it">Sottogenere musicale</rdfs:comment>
+        <rdfs:label xml:lang="en">Trap</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <mattone_music:compareInPlaylist rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis"/>
+        <mattone_music:contenutoIn rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino"/>
+        <mattone_music:haSottogenere rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo"/>
+        <mattone_music:hasMood rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic"/>
+        <mattone_music:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">232</mattone_music:hasDuration>
+        <mattone_music:publicationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-09-17T00:00:00</mattone_music:publicationDate>
+        <rdfs:comment xml:lang="it">Brano dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">Turn_it_on_Again</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke&apos;s_End -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke&apos;s_End">
+        <rdf:type rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+        <mattone_music:compareInPlaylist rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis"/>
+        <mattone_music:contenutoIn rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino"/>
+        <mattone_music:haSottogenere rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo"/>
+        <mattone_music:hasMood rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic"/>
+        <mattone_music:hasDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#positiveInteger">127</mattone_music:hasDuration>
+        <mattone_music:publicationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-09-17T00:00:00</mattone_music:publicationDate>
+        <rdfs:comment xml:lang="it">Brano dei Genesis</rdfs:comment>
+        <rdfs:label xml:lang="en">Duke&apos;s_End</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#d">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#a">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#album">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#g">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#s">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se un brano dura piu di 200 secondi allora è un brano lungo</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S3</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#d"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThan"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoLungo"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se un brano dura meno di 200 secondi allora è un brano corto</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S4</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#d"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#BranoCorto"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se un arstista è autore di un brano e il brano compare in un album, allora l&apos;artista compare nell&apos;album</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S1</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#a"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#album"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#a"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#album"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se un gruppo è autore di un brano, e un artista è componente di quel gruppo, allora quell&apos;artista è autore di quel brano</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S5</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#g"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#a"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#g"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#a"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se un brano ha un sottogenere S ed S è sottogenere di G, allora il brano ha genere G</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">S2</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#s"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#g"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#b"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#g"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

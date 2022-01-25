@@ -1,0 +1,3 @@
+https://github.com/RDFLib/pyLODE#quick-intro
+
+pylode musicmood.ttl -o musicmood.html

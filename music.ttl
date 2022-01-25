@@ -1,0 +1,635 @@
+@prefix : <http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix bag: <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann#> .
+@prefix sequence: <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#> .
+@prefix mattone_music: <http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#> .
+@prefix cpannotationschema: <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#> .
+@prefix untitled-ontology-13: <http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-13#> .
+@base <http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music> .
+
+<http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music> rdf:type owl:Ontology ;
+                                                                    owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ;
+                                                                    dc:creator "Andrea Mattone" ;
+                                                                    dc:date "2022-01-08" ;
+                                                                    dc:description "L'ontologia music rappresenta la base di conoscenza di un insieme di brani musicali organizzati in Album e Playlist con diversi Artisti, in cui ogni brano è collegato ad uno specifico Mood musicale"@it ;
+                                                                    dc:title "Music - Il mood nella musica" ;
+                                                                    vann:preferredNamespacePrefix "http://www.musicmoodmattone.com/musicmood" ;
+                                                                    vann:preferredNamespaceUri "musicmood" ;
+                                                                    rdfs:label "music" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann#preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann#preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi
+mattone_music:autoreDi rdf:type owl:ObjectProperty ;
+                       rdfs:domain <http://xmlns.com/foaf/spec/#term_member> ;
+                       rdfs:range mattone_music:Brano ;
+                       rdfs:comment "Indica che un artista è autore di un determinato brano"@it ;
+                       rdfs:label "artistaAutoreDiBrano"@it ,
+                                  "authorOf"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn
+mattone_music:compareIn rdf:type owl:ObjectProperty ,
+                                 owl:TransitiveProperty ;
+                        rdfs:domain <http://xmlns.com/foaf/spec/#term_member> ;
+                        rdfs:range mattone_music:Album ;
+                        owl:propertyChainAxiom ( mattone_music:autoreDi
+                                                 mattone_music:contenutoIn
+                                               ) ;
+                        rdfs:comment "indica che un artista compare in un determinato album"@it ;
+                        rdfs:label "appearInAlbum"@en ,
+                                   "artistaCompareInAlbum"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites
+mattone_music:compareInFavourites rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf mattone_music:compareInPlaylist ;
+                                  rdfs:domain mattone_music:Brano ;
+                                  rdfs:range mattone_music:Preferiti ;
+                                  rdfs:comment "indica che un brano compare tra una playlist di preferiti"@it ;
+                                  rdfs:label "appearInFavourites"@en ,
+                                             "branoCompareTraPreferiti"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist
+mattone_music:compareInPlaylist rdf:type owl:ObjectProperty ;
+                                owl:inverseOf mattone_music:playlistContieneBrano ;
+                                rdfs:domain mattone_music:Brano ;
+                                rdfs:range mattone_music:Playlist ;
+                                rdfs:comment "indica che un brano compare in una determinata playlist"@it ;
+                                rdfs:label "appearInPlaylist"@en ,
+                                           "branoCompareInPlaylist"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa
+mattone_music:compostaDa rdf:type owl:ObjectProperty ;
+                         rdfs:domain mattone_music:Mix ;
+                         rdfs:range mattone_music:Brano ;
+                         rdfs:comment "indica che un mix è composto da un certo brano"@it ;
+                         rdfs:label "composedBy"@en ,
+                                    "mixCompostoDaBrano"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn
+mattone_music:contenutoIn rdf:type owl:ObjectProperty ,
+                                   owl:FunctionalProperty ;
+                          rdfs:domain mattone_music:Brano ;
+                          rdfs:range mattone_music:Album ;
+                          rdfs:comment "indica che un brano è incluso in un album"@it ;
+                          rdfs:label "branoContenutoInAlbum"@it ,
+                                     "contentIn"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano
+mattone_music:contieneBrano rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf bag:itemContent ;
+                            rdfs:domain mattone_music:Canzone ;
+                            rdfs:range mattone_music:Brano .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere
+mattone_music:haGenere rdf:type owl:ObjectProperty ;
+                       rdfs:domain mattone_music:Brano ;
+                       rdfs:range <http://purl.org/ontology/mo/Genre> ;
+                       owl:propertyChainAxiom ( mattone_music:haSottogenere
+                                                mattone_music:sottoGenereDi
+                                              ) ;
+                       rdfs:comment "indica che un brano ha un certo genere"@it ;
+                       rdfs:label "branoHaGenere"@it ,
+                                  "hasGenre"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere
+mattone_music:haSottogenere rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain mattone_music:Brano ;
+                            rdfs:range mattone_music:Sottogenere ;
+                            rdfs:comment "indica che un brano ha un determinato sottogenere"@it ;
+                            rdfs:label "branoHaSottogenere"@it ,
+                                       "hasSubgenre"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent
+mattone_music:hasComponent rdf:type owl:ObjectProperty ;
+                           owl:inverseOf mattone_music:isComponentOf ;
+                           rdfs:domain mattone_music:Gruppo_Musicale ;
+                           rdfs:range <http://xmlns.com/foaf/spec/#term_member> ;
+                           rdfs:comment "indica che un gruppo ha un determinato artista come membro"@it ;
+                           rdfs:label "gruppoHaComponenteArtista"@it ,
+                                      "hasComponent"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood
+mattone_music:hasMood rdf:type owl:ObjectProperty ;
+                      owl:inverseOf mattone_music:moodDi ;
+                      rdfs:domain mattone_music:Brano ;
+                      rdfs:range mattone_music:Mood ;
+                      rdfs:comment "indica che un brano ha un determinato mood"@it ;
+                      rdfs:label "branoHaUmore"@it ,
+                                 "hasMood"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf
+mattone_music:isComponentOf rdf:type owl:ObjectProperty ;
+                            rdfs:domain <http://xmlns.com/foaf/spec/#term_member> ;
+                            rdfs:range mattone_music:Gruppo_Musicale ;
+                            rdfs:comment "indica che un artista è componente di un determinato gruppo"@it ;
+                            rdfs:label "artistaComponenteDiGruppo"@it ,
+                                       "componentOf"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi
+mattone_music:moodDi rdf:type owl:ObjectProperty ;
+                     rdfs:domain mattone_music:Mood ;
+                     rdfs:range mattone_music:Brano ;
+                     rdfs:comment "indica che un Mood è il mood di un certo Brano"@it ;
+                     rdfs:label "moodDi"@it ,
+                                "moodOf"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano
+mattone_music:playlistContieneBrano rdf:type owl:ObjectProperty ;
+                                    rdfs:domain mattone_music:Playlist ;
+                                    rdfs:range mattone_music:Brano ;
+                                    rdfs:comment "indica che una playlist contiene un determinato brano"@it ;
+                                    rdfs:label "playlistContains"@en ,
+                                               "playlistContieneBrano"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi
+mattone_music:sottoGenereDi rdf:type owl:ObjectProperty ;
+                            owl:inverseOf mattone_music:sovraGenereDi ;
+                            rdfs:domain mattone_music:Sottogenere ;
+                            rdfs:range <http://purl.org/ontology/mo/Genre> ;
+                            owl:propertyDisjointWith mattone_music:sovraGenereDi ;
+                            rdfs:comment "indica che un sotto genere è sottogenere di un determinato genere"@it ;
+                            rdfs:label "isSubgenre"@en ,
+                                       "sottogenereDiGenere"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi
+mattone_music:sovraGenereDi rdf:type owl:ObjectProperty ;
+                            rdfs:domain <http://purl.org/ontology/mo/Genre> ;
+                            rdfs:range mattone_music:Sottogenere ;
+                            rdfs:comment "Indica che un genere è sovraclasse di un sottogenere"@it ;
+                            rdfs:label "genereSovragenereDiSottogenere"@it ,
+                                       "isSupergenreOf"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration
+mattone_music:hasDuration rdf:type owl:DatatypeProperty ;
+                          rdfs:domain mattone_music:Brano ;
+                          rdfs:range xsd:positiveInteger ;
+                          rdfs:comment "indica che un brano ha una determinata durata di un tot di secondi"@it ;
+                          rdfs:label "haDurata"@it ,
+                                     "hasDuration"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate
+mattone_music:publicationDate rdf:type owl:DatatypeProperty ;
+                              rdfs:domain mattone_music:Brano ;
+                              rdfs:range xsd:dateTime ;
+                              rdfs:comment "indica la data di pubblicazione"@it ;
+                              rdfs:label "dataDiPubblicazione"@it ,
+                                         "pubblicationDate"@en .
+
+
+###  http://xmlns.com/foaf/0.1/surname
+foaf:surname rdf:type owl:DatatypeProperty ;
+             rdfs:comment "Indica il nome di un individuo"@it ;
+             rdfs:label "(foaf) Nome"@it ,
+                        "(foaf) name"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/ontology/mo/Genre
+<http://purl.org/ontology/mo/Genre> rdf:type owl:Class ;
+                                    rdfs:comment "Un genere musicale è una categoria convenzionale che identifica e classifica i brani e le composizioni in base a criteri di affinità"@it ;
+                                    rdfs:label "Genere"@it ,
+                                               "Genre"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album
+mattone_music:Album rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#List> ;
+                    rdfs:comment "L'album è una collezione di Brani pubblicata dallo stesso autore in una raccolta"@it ;
+                    rdfs:label "Album"@en ,
+                               "Album"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano
+mattone_music:Brano rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty mattone_music:hasMood ;
+                                          owl:someValuesFrom mattone_music:Mood
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty mattone_music:haGenere ;
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass <http://purl.org/ontology/mo/Genre>
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty mattone_music:haSottogenere ;
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass mattone_music:Sottogenere
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty mattone_music:hasMood ;
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass mattone_music:Mood
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty mattone_music:contenutoIn ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass mattone_music:Album
+                                        ] ;
+                    rdfs:comment "E' un brano musicale"@it ;
+                    rdfs:label "Brano"@it ,
+                               "Song"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone
+mattone_music:Canzone rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem> ;
+                      rdfs:comment "Contiene un brano musicale"@it ;
+                      rdfs:label "Canzone"@it ,
+                                 "Track"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale
+mattone_music:Gruppo_Musicale rdf:type owl:Class ;
+                              owl:equivalentClass <http://xmlns.com/foaf/spec/#term_Group> ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty mattone_music:hasComponent ;
+                                                    owl:someValuesFrom <http://xmlns.com/foaf/spec/#term_member>
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty mattone_music:hasComponent ;
+                                                    owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                    owl:onClass <http://xmlns.com/foaf/spec/#term_member>
+                                                  ] ;
+                              rdfs:comment "Un gruppo musicale è un insieme di Artisti in ambito musicale"@it ;
+                              rdfs:label "Band"@en ,
+                                         "GruppoMusicale"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix
+mattone_music:Mix rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty mattone_music:compostaDa ;
+                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass mattone_music:Brano
+                                      ] ;
+                  rdfs:comment "Un Mix è un insieme di Brani musicali senza particolari correlazioni"@it ;
+                  rdfs:label "Mix"@en ,
+                             "Mix"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood
+mattone_music:Mood rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( mattone_music:Energetic
+                                                     mattone_music:Happy
+                                                     mattone_music:Intense
+                                                     mattone_music:Peaceful
+                                                     mattone_music:Sad
+                                                   )
+                                       ] ;
+                   rdfs:comment "Il mood è lo stato d'animo che viene richiamato da un Brano"@it ;
+                   rdfs:label "Mood"@en ,
+                              "Umore"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist
+mattone_music:Playlist rdf:type owl:Class ;
+                       rdfs:subClassOf mattone_music:Mix ;
+                       rdfs:comment "Una Playlist è un insieme di Brani musicali con una certa correlazione"@it ;
+                       rdfs:label "Playlist"@en ,
+                                  "Playlist"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti
+mattone_music:Preferiti rdf:type owl:Class ;
+                        rdfs:subClassOf mattone_music:Playlist ;
+                        rdfs:comment "I preferiti sono una playlist contenente solo i brani preferiti"@it ;
+                        rdfs:label "Favourites"@en ,
+                                   "Preferiti"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere
+mattone_music:Sottogenere rdf:type owl:Class ;
+                          rdfs:subClassOf <http://purl.org/ontology/mo/Genre> ;
+                          rdfs:comment "Un genere musicale puo suddividersi in sottogeneri"@it ;
+                          rdfs:label "Sottogenere"@it ,
+                                     "Subgenre"@en .
+
+
+###  http://xmlns.com/foaf/spec/#term_Group
+<http://xmlns.com/foaf/spec/#term_Group> rdf:type owl:Class ;
+                                         rdfs:label "(foaf) Group"@en .
+
+
+###  http://xmlns.com/foaf/spec/#term_member
+<http://xmlns.com/foaf/spec/#term_member> rdf:type owl:Class ;
+                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                owl:onProperty mattone_music:autoreDi ;
+                                                                owl:someValuesFrom [ owl:intersectionOf ( mattone_music:Brano
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty mattone_music:autoreDi ;
+                                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                            owl:onClass mattone_music:Brano
+                                                                                                          ]
+                                                                                                        ) ;
+                                                                                     rdf:type owl:Class
+                                                                                   ]
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty mattone_music:compareIn ;
+                                                                owl:someValuesFrom mattone_music:Album
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty mattone_music:isComponentOf ;
+                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass mattone_music:Gruppo_Musicale
+                                                              ] ;
+                                          rdfs:comment "Chi opera nel campo dell'arte come creatore o come interprete: gli a. del '300; a. lirico; a. di varietà, della televisione; chi ha raggiunto un notevole livello di eccellenza nel campo artistico prescelto"@it ;
+                                          rdfs:label "Artist"@en ,
+                                                     "Artista"@it .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone1
+mattone_music:Canzone1 rdf:type owl:NamedIndividual ,
+                                mattone_music:Canzone ;
+                       sequence:precedes mattone_music:Canzone2 ;
+                       mattone_music:contieneBrano <http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke's_End> ;
+                       rdfs:comment "Contiene il brano 1 dei Genesis"@it ;
+                       rdfs:label "CanzoneGenesis1"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2
+mattone_music:Canzone2 rdf:type owl:NamedIndividual ,
+                                mattone_music:Canzone ;
+                       mattone_music:contieneBrano mattone_music:Turn_It_On_Again ;
+                       rdfs:comment "Contiene il brano 2 dei Genesis"@it ;
+                       rdfs:label "CanzoneGenesis2"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos1
+mattone_music:CanzoneMigos1 rdf:type owl:NamedIndividual ;
+                            sequence:precedes mattone_music:CanzoneMigos2 ;
+                            mattone_music:contieneBrano mattone_music:Higher_We_Go ;
+                            rdfs:comment "Contiene il brano 1 dei migos"@it ;
+                            rdfs:label "CanzoneMigos1"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2
+mattone_music:CanzoneMigos2 rdf:type owl:NamedIndividual ,
+                                     mattone_music:Canzone ;
+                            mattone_music:contieneBrano mattone_music:Supastars ;
+                            rdfs:comment "Contiene il brano 2 dei migos"@it ;
+                            rdfs:label "CanzoneMigos2"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II
+mattone_music:Culture_II rdf:type owl:NamedIndividual ,
+                                  mattone_music:Album ;
+                         bag:hasItem mattone_music:CanzoneMigos1 ,
+                                     mattone_music:CanzoneMigos2 ;
+                         rdfs:comment "Album dei migos"@it ;
+                         rdfs:label "Culture_II"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic
+mattone_music:Energetic rdf:type owl:NamedIndividual ,
+                                 mattone_music:Mood ;
+                        rdfs:comment "Mood energetico"@it ;
+                        rdfs:label "Mood_Energetico"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis
+mattone_music:Genesis rdf:type owl:NamedIndividual ;
+                      mattone_music:autoreDi mattone_music:Turn_It_On_Again ,
+                                             <http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke's_End> ;
+                      foaf:surname "Genesis" ;
+                      rdfs:comment "Gruppo Musicale denominato \"Genesis\""@it ;
+                      rdfs:label "Genesis"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy
+mattone_music:Happy rdf:type owl:NamedIndividual ,
+                             mattone_music:Mood ;
+                    rdfs:comment "Mood felice"@it ;
+                    rdfs:label "Mood_Felice"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go
+mattone_music:Higher_We_Go rdf:type owl:NamedIndividual ,
+                                    mattone_music:Brano ;
+                           mattone_music:compareInFavourites mattone_music:This_is_Migos ;
+                           mattone_music:contenutoIn mattone_music:Culture_II ;
+                           mattone_music:haSottogenere mattone_music:Trap ;
+                           mattone_music:hasMood mattone_music:Happy ;
+                           mattone_music:hasDuration "256"^^xsd:positiveInteger ;
+                           mattone_music:publicationDate "2018-01-26T00:00:00"^^xsd:dateTime ;
+                           rdfs:comment "Brano dei Migos"@it ;
+                           rdfs:label "Higher_We_Go"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#HipHop
+mattone_music:HipHop rdf:type owl:NamedIndividual ;
+                     rdfs:comment "Genere musicale"@it ;
+                     rdfs:label "HipHop"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense
+mattone_music:Intense rdf:type owl:NamedIndividual ,
+                               mattone_music:Mood ;
+                      rdfs:comment "Mood intenso"@it ;
+                      rdfs:label "Mood_Intenso"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Migos
+mattone_music:Migos rdf:type owl:NamedIndividual ,
+                             mattone_music:Gruppo_Musicale ;
+                    mattone_music:autoreDi mattone_music:Higher_We_Go ,
+                                           mattone_music:Narcos ,
+                                           mattone_music:Supastars ;
+                    foaf:surname "Migos" ;
+                    rdfs:comment "Gruppo musicale denominato  \"Migos\""@it ;
+                    rdfs:label "Migos"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Narcos
+mattone_music:Narcos rdf:type owl:NamedIndividual ;
+                     mattone_music:contenutoIn mattone_music:Culture_II ;
+                     mattone_music:haSottogenere mattone_music:Trap ;
+                     mattone_music:hasMood mattone_music:Intense ;
+                     rdfs:comment "Brano dei Migos"@it ;
+                     rdfs:label "Narcos"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peaceful
+mattone_music:Peaceful rdf:type owl:NamedIndividual ,
+                                mattone_music:Mood ;
+                       rdfs:comment "Mood rilassato"@it ;
+                       rdfs:label "Mood_Rilassato"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peter_Gabriel
+mattone_music:Peter_Gabriel rdf:type owl:NamedIndividual ,
+                                     <http://xmlns.com/foaf/spec/#term_member> ;
+                            mattone_music:isComponentOf mattone_music:Genesis ;
+                            rdfs:comment "Artista componente dei Genesis"@it ;
+                            rdfs:label "Peter_Gabriel"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Phil_Collins
+mattone_music:Phil_Collins rdf:type owl:NamedIndividual ,
+                                    <http://xmlns.com/foaf/spec/#term_member> ;
+                           mattone_music:isComponentOf mattone_music:Genesis ;
+                           rdfs:comment "Artista componente dei Genesis"@it ;
+                           rdfs:label "Phil_Collins"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock
+mattone_music:Rock rdf:type owl:NamedIndividual ,
+                            <http://purl.org/ontology/mo/Genre> ;
+                   rdfs:comment "Genere musicale"@it ;
+                   rdfs:label "Rock"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo
+mattone_music:Rock_Progressivo rdf:type owl:NamedIndividual ;
+                               mattone_music:sottoGenereDi mattone_music:Rock ;
+                               rdfs:comment "sottogenere musicale"@it ;
+                               rdfs:label "Rock_Progressivo"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sad
+mattone_music:Sad rdf:type owl:NamedIndividual ,
+                           mattone_music:Mood ;
+                  rdfs:comment "Mood triste"@it ;
+                  rdfs:label "Mood_Triste"@it .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars
+mattone_music:Supastars rdf:type owl:NamedIndividual ,
+                                 mattone_music:Brano ;
+                        mattone_music:compareInFavourites mattone_music:This_is_Migos ;
+                        mattone_music:contenutoIn mattone_music:Culture_II ;
+                        mattone_music:haSottogenere mattone_music:Trap ;
+                        mattone_music:hasMood mattone_music:Intense ;
+                        mattone_music:hasDuration "293"^^xsd:positiveInteger ;
+                        mattone_music:publicationDate "2018-01-26T00:00:00"^^xsd:dateTime ;
+                        rdfs:comment "Brano musicale dei Migos"@it ;
+                        rdfs:label "Supastars"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino
+mattone_music:The_Last_Domino rdf:type owl:NamedIndividual ;
+                              bag:hasItem mattone_music:Canzone1 ,
+                                          mattone_music:Canzone2 ;
+                              rdfs:comment "Album dei Genesis"@it ;
+                              rdfs:label "The_Last_Domino"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis
+mattone_music:This_is_Genesis rdf:type owl:NamedIndividual ;
+                              rdfs:comment "Playlist dei Genesis"@it ;
+                              rdfs:label "This_is_Genesis"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos
+mattone_music:This_is_Migos rdf:type owl:NamedIndividual ,
+                                     mattone_music:Preferiti ;
+                            rdfs:comment "Playlist di preferiti dei migos"@it ;
+                            rdfs:label "This_is_Migos"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap
+mattone_music:Trap rdf:type owl:NamedIndividual ,
+                            mattone_music:Sottogenere ;
+                   mattone_music:sottoGenereDi mattone_music:HipHop ;
+                   rdfs:comment "Sottogenere musicale"@it ;
+                   rdfs:label "Trap"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again
+mattone_music:Turn_It_On_Again rdf:type owl:NamedIndividual ,
+                                        mattone_music:Brano ;
+                               mattone_music:compareInPlaylist mattone_music:This_is_Genesis ;
+                               mattone_music:contenutoIn mattone_music:The_Last_Domino ;
+                               mattone_music:haSottogenere mattone_music:Rock_Progressivo ;
+                               mattone_music:hasMood mattone_music:Energetic ;
+                               mattone_music:hasDuration "232"^^xsd:positiveInteger ;
+                               mattone_music:publicationDate "2021-09-17T00:00:00"^^xsd:dateTime ;
+                               rdfs:comment "Brano dei Genesis"@it ;
+                               rdfs:label "Turn_it_on_Again"@en .
+
+
+###  http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke's_End
+<http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke's_End> rdf:type owl:NamedIndividual ,
+                                                                                       mattone_music:Brano ;
+                                                                              mattone_music:compareInPlaylist mattone_music:This_is_Genesis ;
+                                                                              mattone_music:contenutoIn mattone_music:The_Last_Domino ;
+                                                                              mattone_music:haSottogenere mattone_music:Rock_Progressivo ;
+                                                                              mattone_music:hasMood mattone_music:Energetic ;
+                                                                              mattone_music:hasDuration "127"^^xsd:positiveInteger ;
+                                                                              mattone_music:publicationDate "2021-09-17T00:00:00"^^xsd:dateTime ;
+                                                                              rdfs:comment "Brano dei Genesis"@it ;
+                                                                              rdfs:label "Duke's_End"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

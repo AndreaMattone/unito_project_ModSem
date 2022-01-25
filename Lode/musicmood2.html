@@ -1,0 +1,2902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>sequence</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-cp,
+        .sup-cl {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-cp {
+            color:orange;
+        }
+
+        .sup-cl {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-32",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "<p>L'ontologia music rappresenta la base di conoscenza di un insieme di brani musicali organizzati in Album e Playlist con diversi Artisti, in cui ogni brano è collegato ad uno specifico Mood musicale</p>"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "sequence"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.8.3</span>
+  </div>
+  <h1>sequence</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>URI</dt>
+        <dd><code>http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-32</code></dd>
+        <dt><a class="proplink" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">Creator</a>(s)</dt>
+        <dd>
+            Andrea Mattone<br/>
+        </dd>
+        <dt>Version Information</dt>
+        <dd>Created with TopBraid Composer</dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="data_file.ttl">RDF (turtle)</a></dd>
+    </dl>
+    <h2>Description</h2>
+    <div id="description">
+        <p>L'ontologia music rappresenta la base di conoscenza di un insieme di brani musicali organizzati in Album e Playlist con diversi Artisti, in cui ogni brano è collegato ad uno specifico Mood musicale</p>
+    </div>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#objectproperties">Object Properties</a></li>
+        <li><a href="#datatypeproperties">Datatype Properties</a></li>
+        <li><a href="#annotationproperties">Annotation Properties</a></li>
+        <li><a href="#namedindividuals">Named Individuals</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+<section id="overview">
+    <h2>Overview</h2>
+    <div class="figure">
+        <div style="width:500px; height:50px; background-color: lightgrey; border:solid 2px grey; padding:10px;margin-bottom:5px; text-align:center;">Pictures say 1,000 words</div>
+        <div class="caption"><strong>Figure 1:</strong> Ontology overview</div>
+    </div>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#(collections)Bag">(collections) Bag</a></li>
+        <li><a href="#(foaf)Group">(foaf) Group</a></li>
+        <li><a href="#Album">Album</a></li>
+        <li><a href="#Artista">Artista</a></li>
+        <li><a href="#Band">Band</a></li>
+        <li><a href="#Brano">Brano</a></li>
+        <li><a href="#Canzone">Canzone</a></li>
+        <li><a href="#Collection">Collection</a></li>
+        <li><a href="#Favourites">Favourites</a></li>
+        <li><a href="#Genre">Genre</a></li>
+        <li><a href="#Mix">Mix</a></li>
+        <li><a href="#Playlist">Playlist</a></li>
+        <li><a href="#Sottogenere">Sottogenere</a></li>
+        <li><a href="#Umore">Umore</a></li>
+        <li><a href="#item">item</a></li>
+        <li><a href="#list">list</a></li>
+        <li><a href="#listitem">list item</a></li>
+    </ul>
+    <div class="entity class" id="Genre">
+        <h3>Genre<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/ontology/mo/Genre</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Un genere musicale è una categoria convenzionale che identifica e classifica i brani e le composizioni in base a criteri di affinità</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="(collections)Bag">
+        <h3>(collections) Bag<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Bag - Collection that can have a number of copies of each object</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="item">
+        <h3>item<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Item - Element belonging to a Bag</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1<br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Collection">
+        <h3>Collection<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Any container for entities that share one or more common properties. E.g. "stone objects", "the nurses", "the Louvre Aegyptian collection". A collection is not a logical class: a collection is a first-order entity, while a class is a second-order one.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#size">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#size</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="list">
+        <h3>list<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>List - An ordered array of items, that can be present in multiple copies</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf">http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#firstItemOf">http://www.ontologydesignpatterns.org/cp/owl/list.owl#firstItemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="listitem">
+        <h3>list item<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>ListItem - Element belonging to a list</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#nextItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#nextItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#firstItemOf">http://www.ontologydesignpatterns.org/cp/owl/list.owl#firstItemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf">http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#nextItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#nextItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Album">
+        <h3>Album<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>L'album è una collezione di Brani pubblicata dallo stesso autore in una raccolta</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Brano">
+        <h3>Brano<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>E' un brano musicale</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Canzone">
+        <h3>Canzone<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Contiene un brano musicale</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Band">
+        <h3>Band<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Un gruppo musicale è un insieme di Artisti in ambito musicale</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Mix">
+        <h3>Mix<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Un Mix è un insieme di Brani musicali senza particolari correlazioni</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Umore">
+        <h3>Umore<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Il mood è lo stato d'animo che viene richiamato da un Brano</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Playlist">
+        <h3>Playlist<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Una Playlist è un insieme di Brani musicali con una certa correlazione</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Favourites">
+        <h3>Favourites<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>I preferiti sono una playlist contenente solo i brani preferiti</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Sottogenere">
+        <h3>Sottogenere<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Un genere musicale puo suddividersi in sottogeneri</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="(foaf)Group">
+        <h3>(foaf) Group<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://xmlns.com/foaf/spec/#term_Group</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Artista">
+        <h3>Artista<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://xmlns.com/foaf/spec/#term_member</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Chi opera nel campo dell'arte come creatore o come interprete: gli a. del '300; a. lirico; a. di varietà, della televisione; chi ha raggiunto un notevole livello di eccellenza nel campo artistico prescelto</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="objectproperties">
+    <h2>Object Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#hasitem">has item</a></li>
+        <li><a href="#itemcontent">item content</a></li>
+        <li><a href="#itemof">item of</a></li>
+        <li><a href="#hasmember">has member</a></li>
+        <li><a href="#ismemberof">is member of</a></li>
+        <li><a href="#firstitemof">first item of</a></li>
+        <li><a href="#hasfirstitem">has first item</a></li>
+        <li><a href="#haslastitem">has last item</a></li>
+        <li><a href="#lastitemof">last item of</a></li>
+        <li><a href="#nextitem">next item</a></li>
+        <li><a href="#previousitem">previous item</a></li>
+        <li><a href="#seguedirettamente">segue direttamente</a></li>
+        <li><a href="#precededirettamente">precede direttamente</a></li>
+        <li><a href="#segue">segue</a></li>
+        <li><a href="#precedes">precedes</a></li>
+        <li><a href="#authorOf">authorOf</a></li>
+        <li><a href="#appearInAlbum">appearInAlbum</a></li>
+        <li><a href="#branoCompareTraPreferiti">branoCompareTraPreferiti</a></li>
+        <li><a href="#branoCompareInPlaylist">branoCompareInPlaylist</a></li>
+        <li><a href="#mixCompostoDaBrano">mixCompostoDaBrano</a></li>
+        <li><a href="#contentIn">contentIn</a></li>
+        <li><a href="#contieneBrano">contieneBrano</a></li>
+        <li><a href="#branoHaGenere">branoHaGenere</a></li>
+        <li><a href="#branoHaSottogenere">branoHaSottogenere</a></li>
+        <li><a href="#hasComponent1">hasComponent</a></li>
+        <li><a href="#branoHaUmore">branoHaUmore</a></li>
+        <li><a href="#artistaComponenteDiGruppo">artistaComponenteDiGruppo</a></li>
+        <li><a href="#moodOf">moodOf</a></li>
+        <li><a href="#playlistContains">playlistContains</a></li>
+        <li><a href="#isSubgenre">isSubgenre</a></li>
+        <li><a href="#isSupergenreOf">isSupergenreOf</a></li>
+    </ul>
+    <div class="entity property" id="hasitem">
+        <h3>has item<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    has item - The link to every item of the Bag
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="itemcontent">
+        <h3>item content<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    itemContent - The link to the actual resource to which the item refers.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="itemof">
+        <h3>item of<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    item of - The link from an item to the Bag where it is contained
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasmember">
+        <h3>has member<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A relation between collections and entities, e.g. 'my collection of saxophones includes an old Adolphe Sax original alto' (i.e. my collection has member an Adolphe Sax alto).
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="ismemberof">
+        <h3>is member of<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="firstitemof">
+        <h3>first item of<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#firstItemOf</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasfirstitem">
+        <h3>has first item<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    first item - The link to the first item of the list
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="haslastitem">
+        <h3>has last item<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    last item - The link to the last item of the list
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf">http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="lastitemof">
+        <h3>last item of<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#lastItemOf</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="nextitem">
+        <h3>next item<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#nextItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    next item - The link to the next item in a list (ordered collection)
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="previousitem">
+        <h3>previous item<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/list.owl#previousItem</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    previous item - The link to the previous item in a list (ordered collection)
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="seguedirettamente">
+        <h3>segue direttamente<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/sequence.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The intransitive follows relation. For example, Wednesday directly precedes Thursday. Directness of precedence depends on the designer conceptualization.
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#follows">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#follows</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="precededirettamente">
+        <h3>precede direttamente<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/sequence.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The intransitive precedes relation. For example, Monday directly precedes Tuesday. Directness of precedence depends on the designer conceptualization.
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="segue">
+        <h3>segue<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#follows</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/sequence.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A relation between entities, expressing a 'sequence' schema. 
+E.g. 'year 2000 follows 1999', 'preparing coffee' follows 'deciding what coffee to use', 'II World War follows I World War', etc. 
+It can be used between tasks, processes or time intervals, and subproperties would fit best in order to distinguish the different uses.
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes">http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="precedes">
+        <h3>precedes<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#precedes</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    http://www.ontologydesignpatterns.org/cp/owl/sequence.owl
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A relation between entities, expressing a 'sequence' schema. 
+E.g. 'year 1999 precedes 2000', 'deciding what coffee to use' precedes 'preparing coffee', 'World War II follows World War I', 'in the Milan to Rome autoroute, Bologna precedes Florence', etc.
+It can then be used between tasks, processes, time intervals, spatially locate objects, situations, etc. 
+Subproperties can be defined in order to distinguish the different uses.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#Thing">owl:Thing</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="authorOf">
+        <h3>authorOf<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#autoreDi</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Indica che un artista è autore di un determinato brano
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="appearInAlbum">
+        <h3>appearInAlbum<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareIn</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un artista compare in un determinato album
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="branoCompareTraPreferiti">
+        <h3>branoCompareTraPreferiti<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInFavourites</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano compare tra una playlist di preferiti
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="branoCompareInPlaylist">
+        <h3>branoCompareInPlaylist<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compareInPlaylist</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano compare in una determinata playlist
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="mixCompostoDaBrano">
+        <h3>mixCompostoDaBrano<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#compostaDa</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un mix è composto da un certo brano
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="contentIn">
+        <h3>contentIn<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contenutoIn</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano è incluso in un album
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="contieneBrano">
+        <h3>contieneBrano<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#contieneBrano</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="branoHaGenere">
+        <h3>branoHaGenere<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haGenere</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano ha un certo genere
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="branoHaSottogenere">
+        <h3>branoHaSottogenere<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#haSottogenere</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano ha un determinato sottogenere
+                </td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="http://www.w3.org/2002/07/owl#topObjectProperty">owl:topObjectProperty</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasComponent1">
+        <h3>hasComponent<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasComponent</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un gruppo ha un determinato artista come membro
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="branoHaUmore">
+        <h3>branoHaUmore<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasMood</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano ha un determinato mood
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="artistaComponenteDiGruppo">
+        <h3>artistaComponenteDiGruppo<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#isComponentOf</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un artista è componente di un determinato gruppo
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="moodOf">
+        <h3>moodOf<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#moodDi</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un Mood è il mood di un certo Brano
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="playlistContains">
+        <h3>playlistContains<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#playlistContieneBrano</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che una playlist contiene un determinato brano
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isSubgenre">
+        <h3>isSubgenre<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sottoGenereDi</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un sotto genere è sottogenere di un determinato genere
+                </td>
+            </tr>
+            <tr>
+                <th>Inverse properties</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isSupergenreOf">
+        <h3>isSupergenreOf<sup title="object property" class="sup-op">op</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#sovraGenereDi</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Indica che un genere è sovraclasse di un sottogenere
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="datatypeproperties">
+    <h2>Datatype Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#size">size</a></li>
+        <li><a href="#haDurata">haDurata</a></li>
+        <li><a href="#pubblicationDate">pubblicationDate</a></li>
+        <li><a href="#(foaf)Nome">(foaf) Nome</a></li>
+    </ul>
+    <div class="entity property" id="size">
+        <h3>size<sup title="datatype property" class="sup-dp">dp</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/cp/owl/bag.owl#size</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    size - The number of items belonging to a collection
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="haDurata">
+        <h3>haDurata<sup title="datatype property" class="sup-dp">dp</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#hasDuration</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica che un brano ha una determinata durata di un tot di secondi
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#positiveInteger">xsd:positiveInteger</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="pubblicationDate">
+        <h3>pubblicationDate<sup title="datatype property" class="sup-dp">dp</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#publicationDate</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    indica la data di pubblicazione
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="(foaf)Nome">
+        <h3>(foaf) Nome<sup title="datatype property" class="sup-dp">dp</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://xmlns.com/foaf/0.1/surname</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Indica il nome di un individuo
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="annotationproperties">
+    <h2>Annotation Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#creator">creator</a></li>
+        <li><a href="#date">date</a></li>
+        <li><a href="#description">description</a></li>
+        <li><a href="#title">title</a></li>
+        <li><a href="#preferredNamespacePrefix">preferredNamespacePrefix</a></li>
+        <li><a href="#preferredNamespaceUri">preferredNamespaceUri</a></li>
+        <li><a href="#coversRequirements">coversRequirements</a></li>
+        <li><a href="#extractedFrom">extractedFrom</a></li>
+        <li><a href="#hasAuthor">hasAuthor</a></li>
+        <li><a href="#hasComponent">hasComponent</a></li>
+        <li><a href="#hasConsequences">hasConsequences</a></li>
+        <li><a href="#hasIntent">hasIntent</a></li>
+        <li><a href="#isSpecializationOf">isSpecializationOf</a></li>
+        <li><a href="#reengineeredFrom">reengineeredFrom</a></li>
+        <li><a href="#relatedCPs">relatedCPs</a></li>
+        <li><a href="#scenarios">scenarios</a></li>
+    </ul>
+    <div class="entity property" id="creator">
+        <h3>creator<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/elements/1.1/creator</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="date">
+        <h3>date<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/elements/1.1/date</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="description">
+        <h3>description<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/elements/1.1/description</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="title">
+        <h3>title<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/elements/1.1/title</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="preferredNamespacePrefix">
+        <h3>preferredNamespacePrefix<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/vocab/vann#preferredNamespacePrefix</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="preferredNamespaceUri">
+        <h3>preferredNamespaceUri<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/vocab/vann#preferredNamespaceUri</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="coversRequirements">
+        <h3>coversRequirements<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#coversRequirements</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is used for exemplifying possible requirements the content pattern provides a solution for. Requirements are expressed as natural language competency questions.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="extractedFrom">
+        <h3>extractedFrom<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#extractedFrom</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property should be assigned with a URI, which points to the possible reference ontology which the annotated pattern was extracted from (i.e. the reference ontology that the ontology elements have been deeply or partially cloned by). The range is not explicit in the definition of the annotation property because it would turn the ontology to OWL Full. E.g. The participation pattern is extracted from the Dolce Ultra Lite ontology, hence the value for this annotation property is http://www.ontologydesignpatterns.org/ont/dul/DUL.owl
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasAuthor">
+        <h3>hasAuthor<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasAuthor</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasComponent">
+        <h3>hasComponent<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasComponent</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is useful for content ontology design patterns. Its value is a URI, which refers to another content ontology design pattern which is a component of the annotated one.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasConsequences">
+        <h3>hasConsequences<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasConsequences</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is used for briefly describing the benefits and/or possible trade-offs when using the CP.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasIntent">
+        <h3>hasIntent<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasIntent</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is used in order to describe the intent of the content pattern.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="isSpecializationOf">
+        <h3>isSpecializationOf<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#isSpecializationOf</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is useful for content ontology design patterns and its elements. Its value is a URI, which refers either to a content ontology design pattern that is specialized by the annotated one, or to an ontology element that is specialized by the annotated one.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="reengineeredFrom">
+        <h3>reengineeredFrom<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#reengineeredFrom</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property should be assigned with a URI, which points to the concept schema, page, or anything else from which the annotated pattern was reengineered.  If the source does not have any URI e.g., a printed book, this property value should provide information as precise as possible in order to identify the source. This property is alternative to the extractedFrom property because it is used when the pattern come from a concept schema which is not an owl ontology. For example content ontology design patterns, which are reengineered from data model patterns, rdf schemas, etc. should be annotatd with this property. E.g. The basicpersonalfoaf pattern is extracted from the rdf FOAF specification, hence the value for this annotation property is http://xmlns.com/foaf/spec/20071002.rdf
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="relatedCPs">
+        <h3>relatedCPs<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#relatedCPs</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property can be used to indicate other CPs (if any) that specialize, generalize, inlcude, or are components of the CP. Furthermore, this field may indicate other CPs that are typically used in conjunction with the described one. Important similarities and differences with other patterns can be also described here.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scenarios">
+        <h3>scenarios<sup title="annotation property" class="sup-ap">ap</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#scenarios</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    This annotation property is used for describing examples of instantiation of the Content OP. For example, for the part-of Content OP (which represents part-whole relations) a possible scenario is the sentence: "the brain is part of the human body". Scenarios are expressed as natural language sentences.
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+  <section id="namedindividuals">
+    <h2>Named Individuals <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#CanzoneGenesis1">CanzoneGenesis1</a></li>
+        <li><a href="#CanzoneGenesis2">CanzoneGenesis2</a></li>
+        <li><a href="#CanzoneMigos1">CanzoneMigos1</a></li>
+        <li><a href="#CanzoneMigos2">CanzoneMigos2</a></li>
+        <li><a href="#Culture_II">Culture_II</a></li>
+        <li><a href="#Duke's_End">Duke's_End</a></li>
+        <li><a href="#Genesis">Genesis</a></li>
+        <li><a href="#Higher_We_Go">Higher_We_Go</a></li>
+        <li><a href="#HipHop">HipHop</a></li>
+        <li><a href="#Migos">Migos</a></li>
+        <li><a href="#Mood_Energetico">Mood_Energetico</a></li>
+        <li><a href="#Mood_Felice">Mood_Felice</a></li>
+        <li><a href="#Mood_Intenso">Mood_Intenso</a></li>
+        <li><a href="#Mood_Rilassato">Mood_Rilassato</a></li>
+        <li><a href="#Mood_Triste">Mood_Triste</a></li>
+        <li><a href="#Narcos">Narcos</a></li>
+        <li><a href="#Peter_Gabriel">Peter_Gabriel</a></li>
+        <li><a href="#Phil_Collins">Phil_Collins</a></li>
+        <li><a href="#Rock">Rock</a></li>
+        <li><a href="#Rock_Progressivo">Rock_Progressivo</a></li>
+        <li><a href="#Supastars">Supastars</a></li>
+        <li><a href="#The_Last_Domino">The_Last_Domino</a></li>
+        <li><a href="#This_is_Genesis">This_is_Genesis</a></li>
+        <li><a href="#This_is_Migos">This_is_Migos</a></li>
+        <li><a href="#Trap">Trap</a></li>
+        <li><a href="#Turn_it_on_Again">Turn_it_on_Again</a></li>
+    </ul>
+    <div class="entity named_individual" id="CanzoneGenesis1">
+        <h3>CanzoneGenesis1<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone1
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Contiene il brano 1 dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="CanzoneGenesis2">
+        <h3>CanzoneGenesis2<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone2
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Contiene il brano 2 dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="CanzoneMigos1">
+        <h3>CanzoneMigos1<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos1
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Contiene il brano 1 dei migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="CanzoneMigos2">
+        <h3>CanzoneMigos2<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#CanzoneMigos2
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Canzone</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem">http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Contiene il brano 2 dei migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Culture_II">
+        <h3>Culture_II<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Culture_II
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Album dei migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Duke's_End">
+        <h3>Duke's_End<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Duke's_End
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Brano dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Mood_Energetico">
+        <h3>Mood_Energetico<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Energetic
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Mood energetico
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Genesis">
+        <h3>Genesis<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Genesis
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale</a><br/>
+                <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><br/>
+                <a href="http://xmlns.com/foaf/spec/#term_Group">http://xmlns.com/foaf/spec/#term_Group</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Gruppo Musicale denominato "Genesis"
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Mood_Felice">
+        <h3>Mood_Felice<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Happy
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Mood felice
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Higher_We_Go">
+        <h3>Higher_We_Go<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Higher_We_Go
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Brano dei Migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="HipHop">
+        <h3>HipHop<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#HipHop
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Genere musicale
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Mood_Intenso">
+        <h3>Mood_Intenso<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Intense
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Mood intenso
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Migos">
+        <h3>Migos<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Migos
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Gruppo_Musicale</a><br/>
+                <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><br/>
+                <a href="http://xmlns.com/foaf/spec/#term_Group">http://xmlns.com/foaf/spec/#term_Group</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Gruppo musicale denominato  "Migos"
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Narcos">
+        <h3>Narcos<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Narcos
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Brano dei Migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Mood_Rilassato">
+        <h3>Mood_Rilassato<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peaceful
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Mood rilassato
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Peter_Gabriel">
+        <h3>Peter_Gabriel<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Peter_Gabriel
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Artista componente dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Phil_Collins">
+        <h3>Phil_Collins<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Phil_Collins
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://xmlns.com/foaf/spec/#term_member">http://xmlns.com/foaf/spec/#term_member</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Artista componente dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Rock">
+        <h3>Rock<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Genere musicale
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Rock_Progressivo">
+        <h3>Rock_Progressivo<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Rock_Progressivo
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    sottogenere musicale
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Mood_Triste">
+        <h3>Mood_Triste<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sad
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mood</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Mood triste
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Supastars">
+        <h3>Supastars<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Supastars
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Brano musicale dei Migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="The_Last_Domino">
+        <h3>The_Last_Domino<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#The_Last_Domino
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Album</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection">http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag">http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Bag</a><br/>
+                <a href="http://www.ontologydesignpatterns.org/cp/owl/list.owl#List">http://www.ontologydesignpatterns.org/cp/owl/list.owl#List</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Album dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="This_is_Genesis">
+        <h3>This_is_Genesis<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Genesis
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Playlist dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="This_is_Migos">
+        <h3>This_is_Migos<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#This_is_Migos
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Playlist</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Mix</a><br/>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Preferiti</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Playlist di preferiti dei migos
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Trap">
+        <h3>Trap<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Trap
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Sottogenere</a><br/>
+                <a href="http://purl.org/ontology/mo/Genre">http://purl.org/ontology/mo/Genre</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Sottogenere musicale
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity named_individual" id="Turn_it_on_Again">
+        <h3>Turn_it_on_Again<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Turn_It_On_Again
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Classes(s)</dt>
+            <dd>
+                <a href="http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano">http://www.semanticweb.org/matto/ontologies/2022/0/mattone_music#Brano</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Brano dei Genesis
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+  
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt>:</dt>
+        <dd><code>http://www.semanticweb.org/matto/ontologies/2022/0/untitled-ontology-32#</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">dp</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>

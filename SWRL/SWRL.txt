@@ -1,0 +1,14 @@
+Se un arstista è autore di un brano e il brano compare in un album, allora l'artista compare nell'album
+	mattone_music:autoreDi(?a, ?b) ^ mattone_music:contenutoIn(?b, ?album) -> mattone_music:compareIn(?a, ?album)
+
+Se un brano ha un sottogenere S ed S è sottogenere di G, allora il brano ha genere G
+	mattone_music:haSottogenere(?b,?s) ^ mattone_music:sottoGenereDi(?s,?g) -> mattone_music:haGenere(?b,?g)
+
+Se un brano dura piu di 200 secondi allora è un brano lungo
+	mattone_music:Brano(?b) ^ mattone_music:hasDuration(?b,?d) ^ swrlb:greaterThan(200) -> mattone_music:BranoLungo(?b)
+
+Se un brano dura meno di 200 secondi allora è un brano corto
+	mattone_music:Brano(?b) ^ mattone_music:hasDuration(?b, ?d) ^ swrlb:lessThan(200) -> mattone_music:BranoCorto(?b)
+
+Se un gruppo è autore di un brano, e un artista è componente di quel gruppo, allora quell'artista è autore di quel brano
+	mattone_music:hasComponent(?g,?a) ^ mattone_music:autoreDi(?g,?b) -> mattone_music:autoreDi(?a,?b)

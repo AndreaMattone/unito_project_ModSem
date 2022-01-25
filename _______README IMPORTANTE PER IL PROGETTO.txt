@@ -1,0 +1,1 @@
+Usare HermiT come reasoner altrimenti l'ontologia da dei problemi
